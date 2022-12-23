@@ -1,4 +1,5 @@
-︠3ae58ff3-0c36-4197-8f69-0ff80629e8c0s︠
+︠3ae58ff3-0c36-4197-8f69-0ff80629e8c0︠
+#first we define the function H, which is the binary entropy function
 def H(x):
     if x <=0:
         return 0
@@ -6,12 +7,9 @@ def H(x):
         return 0
     else:
         return -(x*log(x,2)+(1-x)*log(1-x,2))
-︡24cc56b2-25e4-4796-9cc3-d0838648c45c︡{"done":true}
-︠aec42851-587e-4168-be05-294ce63e790bs︠
-plot( H(x^2)/(x*H(x)),(0,1))
-
-︡ca769eb0-b5fc-4170-b08a-e25bda68086d︡{"file":{"filename":"/tmp/tmpop84i6_q/tmp_t_202t8c.svg","show":true,"text":null,"uuid":"00379564-e92e-4d73-98f5-7597ea1dda6d"},"once":false}︡{"done":true}
-︠89bd5b04-4763-4adb-8cd9-908843c389eds︠
+︡8ce36c56-64de-4dd6-b904-62ea561befe9︡{"done":true}
+︠9fbfbebc-de08-4b20-93d9-8e09915b1db4︠
+#we determine the values for a,b,c which we claim to be optimal
 def ff(x):
     return(H(x)*(2-H(x))-H(2*x-x^2))
 a=0.3
@@ -28,42 +26,46 @@ a=(1-H(b))/(2-H(b))
 c=a+(1-a)*b
 round(c,100)
 plot(ff,(0,1))
-︡c26235c1-49bd-425c-bb07-1170e34666df︡{"stdout":"0.0\n"}︡{"stdout":"0.3294547385030371\n"}︡{"stdout":"0.3294547385030371\n"}︡{"stdout":"0.38234553336670285\n"}︡{"file":{"filename":"/tmp/tmpop84i6_q/tmp_66k2thzf.svg","show":true,"text":null,"uuid":"8b094a5a-4abb-4233-b530-cca4cfc1c63d"},"once":false}︡{"done":true}
-︠8173f28d-ac62-4ac8-8b4e-dfe43173ed22s︠
+︡70cb2a19-ad4c-4923-a8c3-dab771424765︡{"stdout":"0.0\n"}︡{"stdout":"0.3294547385030371\n"}︡{"stdout":"0.3294547385030371\n"}︡{"stdout":"0.38234553336670285\n"}︡{"file":{"filename":"/tmp/tmpwcvkjkai/tmp_ut627shr.svg","show":true,"text":null,"uuid":"92148834-9d00-4650-9c92-972c0162d6bb"},"once":false}︡{"done":true}
+︠8173f28d-ac62-4ac8-8b4e-dfe43173ed22︠
+%we compute derivatives and set them as functions to compute the optimal choice for alpha
+
 derivative((1-(c-x)/(1-x))^2*H(2*x-x^2)-(1-(c-x)/(1-x))*H(x),x)
-︡26c94967-0733-4d2c-acc7-634c339d499a︡{"stdout":"-2*((x - 1)*log(x^2 - 2*x + 1)/log(2) - (x - 1)*log(-x^2 + 2*x)/log(2))*((x - 0.38234553336670285)/(x - 1) - 1)^2 + 2*((x^2 - 2*x + 1)*log(x^2 - 2*x + 1)/log(2) - (x^2 - 2*x)*log(-x^2 + 2*x)/log(2))*((x - 0.38234553336670285)/(x - 1) - 1)*((x - 0.38234553336670285)/(x - 1)^2 - 1/(x - 1)) - ((x - 0.38234553336670285)/(x - 1) - 1)*(log(x)/log(2) - log(-x + 1)/log(2)) + (x*log(x)/log(2) - (x - 1)*log(-x + 1)/log(2))*((x - 0.38234553336670285)/(x - 1)^2 - 1/(x - 1))"}︡{"stdout":"\n"}︡{"done":true}
+︡4128eba7-88ca-414a-909b-133af3d8d55b︡{"stdout":"-2*((x - 1)*log(x^2 - 2*x + 1)/log(2) - (x - 1)*log(-x^2 + 2*x)/log(2))*((x - 0.38234553336670285)/(x - 1) - 1)^2 + 2*((x^2 - 2*x + 1)*log(x^2 - 2*x + 1)/log(2) - (x^2 - 2*x)*log(-x^2 + 2*x)/log(2))*((x - 0.38234553336670285)/(x - 1) - 1)*((x - 0.38234553336670285)/(x - 1)^2 - 1/(x - 1)) - ((x - 0.38234553336670285)/(x - 1) - 1)*(log(x)/log(2) - log(-x + 1)/log(2)) + (x*log(x)/log(2) - (x - 1)*log(-x + 1)/log(2))*((x - 0.38234553336670285)/(x - 1)^2 - 1/(x - 1))\n"}︡{"done":true}
 ︠35970402-67e6-4c31-905e-26cd1e47c411s︠
 def g1(x):
     return( -2*((x - 1)*log(x^2 - 2*x + 1)/log(2) - (x - 1)*log(-x^2 + 2*x)/log(2))*((x - c)/(x - 1) - 1)^2 + 2*((x^2 - 2*x + 1)*log(x^2 - 2*x + 1)/log(2) - (x^2 - 2*x)*log(-x^2 + 2*x)/log(2))*((x - c)/(x - 1) - 1)*((x - c)/(x - 1)^2 - 1/(x - 1)) - ((x - c)/(x - 1) - 1)*(log(x)/log(2) - log(-x + 1)/log(2)) + (x*log(x)/log(2) - (x - 1)*log(-x + 1)/log(2))*((x - c)/(x - 1)^2 - 1/(x - 1)))
-︡1879b46e-07c7-4da3-acf9-63e786f22853︡{"done":true}
+︡f28d35b6-8409-4b14-b011-70f276e48995︡{"done":true}
 ︠3d41a264-1aba-4509-8f6d-4087958adfee︠
-
-︡1db6a8d0-a32d-43a7-8c84-cabde29dffba︡
-︠62c7a01c-d068-4037-bca0-4f181469eb1ds︠
 derivative((1-2*(c-x)/(1-x))-(1-(c-x)/(1-x))*H(x),x)
-︡fbb78405-b4cc-4a3b-bba7-e2d9e3ac4ea8︡{"stdout":"-((x - 0.38234553336670285)/(x - 1) - 1)*(log(x)/log(2) - log(-x + 1)/log(2)) + (x*log(x)/log(2) - (x - 1)*log(-x + 1)/log(2))*((x - 0.38234553336670285)/(x - 1)^2 - 1/(x - 1)) + (2*x - 0.7646910667334057)/(x - 1)^2 - 2/(x - 1)\n"}︡{"done":true}
+︡4bf4f625-c887-408e-9f15-694bb5f1795a︡{"stdout":"-((x - 0.38234553336670285)/(x - 1) - 1)*(log(x)/log(2) - log(-x + 1)/log(2)) + (x*log(x)/log(2) - (x - 1)*log(-x + 1)/log(2))*((x - 0.38234553336670285)/(x - 1)^2 - 1/(x - 1)) + (2*x - 0.7646910667334057)/(x - 1)^2 - 2/(x - 1)\n"}︡{"done":true}
 ︠44eee256-200e-41d8-8032-a502313ffd6fs︠
 def g2(x):
     return(-((x - c)/(x - 1) - 1)*(log(x)/log(2) - log(-x + 1)/log(2)) + (x*log(x)/log(2) - (x - 1)*log(-x + 1)/log(2))*((x - c)/(x - 1)^2 - 1/(x - 1)) + (2*x - 2*c)/(x - 1)^2 - 2/(x - 1))
-︡e8867d62-9bef-4a52-8f59-e704f9347f06︡{"done":true}
+︡2daf7537-c9a2-4e12-b794-e3e3aa9e57c8︡{"done":true}
 ︠bb093565-b756-420e-bc9e-279858d52ea0s︠
 
-eps=-g1(b)/(-g1(b)+g2(b))
-round(eps,30)
+alpha=-g1(b)/(-g1(b)+g2(b))
+round(alpha,30)
+
+︡db0b40b1-046a-4096-87b1-49671a7ee31f︡{"stdout":"0.035606980437447984\n"}︡{"done":true}
+︠94e6358e-b83f-4d98-9641-ccf8a1b987f4s︠
+#we first verify that the minimum of the parabola for fixed b is always larger than the maximum allowed value for a
+def g(b):
+    return (((1-alpha)*2*H(2*b-b^2)+alpha*2*H(min(2*b,0.5))-H(b))/((1-alpha)*2*H(2*b-b^2)) -(c-b)/(1-b))
+plot(g,(0,c))
+︡d7fdd147-d83a-4c0e-9389-69e83d0dd9f5︡{"file":{"filename":"/tmp/tmpwcvkjkai/tmp_uhlr58k9.svg","show":true,"text":null,"uuid":"185b7dc4-40b5-4c90-96d6-bb5a7d7abbfe"},"once":false}︡{"done":true}
+︠aaa18f37-bdea-43aa-8f2a-8c0d0a62ccb0s︠
+#finally, we verify that the function under consideration is positive at its minimum, i.e., for a=(c-b)/(1-b)
 def f(a,b):
-    return((1-eps)*(1-a)^2*H(2*b-b^2)+eps*(1-2*a)*H(min(2*b,0.5))-(1-a)*H(b))
+    return((1-alpha)*(1-a)^2*H(2*b-b^2)+alpha*(1-2*a)*H(min(2*b,0.5))-(1-a)*H(b))
 def g(b):
     return f((c-b)/(1-b),b)
 
 plot(g,(0.,c))
 plot(g,(0.329,0.33))
-︡e31fb181-7781-4c32-bcfa-953f62f8a828︡{"stdout":"0.035606980437447984\n"}︡{"file":{"filename":"/tmp/tmpop84i6_q/tmp_1mr84rxs.svg","show":true,"text":null,"uuid":"a418eb9e-0766-4933-b878-5ff0a3b77831"},"once":false}︡{"file":{"filename":"/tmp/tmpop84i6_q/tmp_hk9ogyvu.svg","show":true,"text":null,"uuid":"70d5c58e-495b-46e8-89fa-6a610b61bc77"},"once":false}︡{"done":true}
-︠35ac6e37-7e6f-4ced-b9d7-22f420a32cbes︠
-eps=-g1(b)/(-g1(b)+g2(b))
 
-derivative(derivative(((1-eps)*(1-(c-x)/(1-x))^2*H(2*x-x^2)+eps*(1-2*(c-x)/(1-x))-(1-(c-x)/(1-x))*H(x)),x),x)
-︡bec66620-995d-48c7-8492-2c02ef9ec42f︡{"stdout":"-2*((x - 0.38234553336670285)/(x - 1) - 1)^2*(2*(x - 1)^2/((x^2 - 2*x + 1)*log(2)) - 2*(x - 1)^2/((x^2 - 2*x)*log(2)) + log(x^2 - 2*x + 1)/log(2) - log(-x^2 + 2*x)/log(2))*(-0.013997324783026843/((-1.511235368213045/log(2) + 2.7473841370162266)*log(2)) + 1) + 8*((x - 1)*log(x^2 - 2*x + 1)/log(2) - (x - 1)*log(-x^2 + 2*x)/log(2))*((x - 0.38234553336670285)/(x - 1) - 1)*((x - 0.38234553336670285)/(x - 1)^2 - 1/(x - 1))*(-0.013997324783026843/((-1.511235368213045/log(2) + 2.7473841370162266)*log(2)) + 1) - 2*((x^2 - 2*x + 1)*log(x^2 - 2*x + 1)/log(2) - (x^2 - 2*x)*log(-x^2 + 2*x)/log(2))*((x - 0.38234553336670285)/(x - 1)^2 - 1/(x - 1))^2*(-0.013997324783026843/((-1.511235368213045/log(2) + 2.7473841370162266)*log(2)) + 1) - 4*((x^2 - 2*x + 1)*log(x^2 - 2*x + 1)/log(2) - (x^2 - 2*x)*log(-x^2 + 2*x)/log(2))*((x - 0.38234553336670285)/(x - 1) - 1)*((x - 0.38234553336670285)/(x - 1)^3 - 1/(x - 1)^2)*(-0.013997324783026843/((-1.511235368213045/log(2) + 2.7473841370162266)*log(2)) + 1) + 2*(log(x)/log(2) - log(-x + 1)/log(2))*((x - 0.38234553336670285)/(x - 1)^2 - 1/(x - 1)) - 2*(x*log(x)/log(2) - (x - 1)*log(-x + 1)/log(2))*((x - 0.38234553336670285)/(x - 1)^3 - 1/(x - 1)^2) + ((x - 0.38234553336670285)/(x - 1) - 1)*(1/((x - 1)*log(2)) - 1/(x*log(2))) - 0.027994649566053686*((2*x - 0.7646910667334057)/(x - 1)^3 - 2/(x - 1)^2)/((-1.511235368213045/log(2) + 2.7473841370162266)*log(2))\n"}︡{"done":true}
-︠2243e8eb-eaa1-4992-b932-4b7375ce3096︠
+︡d1bde7b9-8111-4b60-85cd-8cf3f2e4d01c︡{"file":{"filename":"/tmp/tmpwcvkjkai/tmp_ue4pkr9f.svg","show":true,"text":null,"uuid":"5e32149c-6d31-40e4-8fc6-e6cb36b1f90c"},"once":false}︡{"file":{"filename":"/tmp/tmpwcvkjkai/tmp_0i2jxlbu.svg","show":true,"text":null,"uuid":"3526935b-547c-444c-98cd-c03d22be024c"},"once":false}︡{"done":true}
 
 
 
